@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mills Family - Photo Gallery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="site-header-row">
+        <a class="brand" href="Home.html">Mills Family</a>
+        <nav class="main-menu">
+          <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a class="active" href="Photo Gallery.html">Photo Gallery</a></li>
+            <li><a href="St Johns Passion.html">St John's Passion</a></li>
+            <li><a href="Drum and Practice App.html">Drum and Practice App</a></li>
+            <li><a href="Contact Us.html">Contact Us</a></li>
+            <li><a class="search-icon" href="#" aria-label="Search">
+              <span class="magnifier">⌕</span>
+            </a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <section class="intro-strip">
+        <div class="intro-copy">
+          <p>Welcome to mills-fam.com - Home page to Mike Mills, Cindy Mills and family.<br />
+          If you would like to contact us, please send us your information via the <a class="inline-contact" href="Contact Us.html">Contact Us</a> page.</p>
+        </div>
+      </section>
+    </header>
+
+    <main class="page gallery-page">
+      <section class="gallery-heading">
+        <h1>Photo Gallery</h1>
+      </section>
+
+      <section class="gallery-layout">
+        <div class="carousel-wrap">
+          <div class="carousel">
+            <button class="carousel-button prev" aria-label="Previous photo">‹</button>
+
+            <div class="carousel-window">
+              <div class="carousel-track">
+                <figure class="carousel-slide active">
+                  <img src="Photo Gallery/182eb0feb412f692c25a578231840a28.jpg" alt="Mills family photo" />
+                  <figcaption>Mills Family</figcaption>
+                </figure>
+                <figure class="carousel-slide">
+                  <img src="Photo Gallery/27d4e386859e182cb8c5ec504c8d709e.jpg" alt="Family gathering photo" />
+                  <figcaption>Family Gathering</figcaption>
+                </figure>
+                <figure class="carousel-slide">
+                  <img src="Photo Gallery/5d314e9fd42f408108584e994f8ea289.jpg" alt="Holiday family photo" />
+                  <figcaption>Holiday Memories</figcaption>
+                </figure>
+                <figure class="carousel-slide">
+                  <img src="Photo Gallery/b14023045b49d325a44fbf7fd8ad2f63.jpg" alt="Family event photo" />
+                  <figcaption>Family Event</figcaption>
+                </figure>
+                <figure class="carousel-slide">
+                  <img src="Photo Gallery/c245ecb16aaa7bab791b8ea58e0944b5.jpg" alt="Mills family photo" />
+                  <figcaption>Family Joy</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <button class="carousel-button next" aria-label="Next photo">›</button>
+          </div>
+
+          <div class="carousel-dots">
+            <button class="dot active" data-slide="0" aria-label="Show first image"></button>
+            <button class="dot" data-slide="1" aria-label="Show second image"></button>
+            <button class="dot" data-slide="2" aria-label="Show third image"></button>
+            <button class="dot" data-slide="3" aria-label="Show fourth image"></button>
+            <button class="dot" data-slide="4" aria-label="Show fifth image"></button>
+          </div>
+        </div>
+
+        <aside class="gallery-aside">
+          <div class="gallery-card">
+            <span class="gallery-kicker">The Mills Family</span>
+            <h2>Family Memories</h2>
+            <p>Stories, photos, and milestones from our family story.</p>
+            <div class="gallery-stats">
+              <span><strong>05</strong> Photos</span>
+              <span><strong>01</strong> Album</span>
+            </div>
+            <div class="gallery-link-list">
+              <a href="Home.html">Back to Home</a>
+              <a href="St Johns Passion.html">St John's Passion</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-copy">
+        <span class="footer-sign">Mike and Cindy Mills, The Mills Family.<br />
+        Est. 1997 in Fort Worth, TX</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    const prev = document.querySelector('.carousel-button.prev');
+    const next = document.querySelector('.carousel-button.next');
+    let current = 0;
+
+    function showSlide(index) {
+      current = index;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === current);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === current);
+      });
+    }
+
+    prev.addEventListener('click', () => {
+      const nextIndex = (current - 1 + slides.length) % slides.length;
+      showSlide(nextIndex);
+    });
+
+    next.addEventListener('click', () => {
+      const nextIndex = (current + 1) % slides.length;
+      showSlide(nextIndex);
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        showSlide(Number(dot.dataset.slide));
+      });
+    });
+
+    setInterval(() => {
+      const nextIndex = (current + 1) % slides.length;
+      showSlide(nextIndex);
+    }, 3200);
+  </script>
+</body>
+</html>
